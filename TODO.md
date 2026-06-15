@@ -107,10 +107,11 @@
 - [x] Resumen renumerado a diapositiva 11 (01–11)
 - [x] Enlaces portada/híbrido/evaluación apuntan al cierre
 
-## Pendiente
-- [ ] TODO: Probar despliegue en Vercel antes de la exposición
-
 ### 2026-06-15 — Preparación GitHub + Vercel
 - [x] .gitignore, .env.example, pyproject.toml (entrypoint Vercel)
 - [x] settings.py: ALLOWED_HOSTS, STATIC_ROOT, WhiteNoise, variables de entorno
 - [x] README con pasos GitHub y Vercel
+- [x] Subido a GitHub: https://github.com/AngelMamani/exp-sistemas-experto-cnn-3d
+
+## Pendiente
+- [ ] TODO: Desplegar en Vercel y probar antes de la exposición
