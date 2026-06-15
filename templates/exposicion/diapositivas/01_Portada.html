@@ -1,0 +1,48 @@
+{# Diapositiva 01 — Portada #}
+<section class="Slide Slide--Hero Slide--Portada is-active" id="portada" data-slide-id="portada" data-indice="0">
+    <div class="Slide__Contenedor Portada">
+        <div class="Portada__Columna Portada__Columna--Texto">
+            <header class="Portada__Encabezado anim-entrada">
+                <span class="Etiqueta Etiqueta--Glow">{{ Institucion }} · {{ Curso }} · {{ FechaExposicion }}</span>
+                <h1 class="Portada__Titulo anim-entrada anim-retraso-1">{{ TituloPresentacion }}</h1>
+            </header>
+
+            <p class="Portada__Frase anim-entrada anim-retraso-2">
+                La <strong class="TextoCnn">CNN-3D</strong> ve el volumen.<br>
+                El <strong class="TextoSe">Sistema Experto</strong> evalúa, decide y explica.
+            </p>
+
+            <div class="PortadaIntegrantes anim-entrada anim-retraso-3">
+                <span class="PortadaIntegrantes__Label">Expositor(es)</span>
+                <ul class="PortadaIntegrantes__Lista">
+                    {% for Integrante in Integrantes %}
+                    <li class="PortadaIntegrantes__Nombre">{{ Integrante }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="Portada__Acciones anim-entrada anim-retraso-3">
+                <button type="button" class="Boton Boton--Primario Boton--Xl" data-ir-slide="1">Iniciar presentación →</button>
+                <button type="button" class="Boton Boton--Ghost Boton--Xl" data-ir-slide="10">Saltar al cierre</button>
+            </div>
+        </div>
+
+        <div class="Portada__Columna Portada__Columna--Visual anim-entrada anim-retraso-2">
+            <div class="Portada__VisualCard">
+                <div class="VisualHero">
+                    <div class="Cubo3dAnimado">
+                        <div class="Cubo3dAnimado__Cara Cubo3dAnimado__Cara--Frente"></div>
+                        <div class="Cubo3dAnimado__Cara Cubo3dAnimado__Cara--Atras"></div>
+                        <div class="Cubo3dAnimado__Cara Cubo3dAnimado__Cara--Derecha"></div>
+                        <div class="Cubo3dAnimado__Cara Cubo3dAnimado__Cara--Izquierda"></div>
+                        <div class="Cubo3dAnimado__Cara Cubo3dAnimado__Cara--Arriba"></div>
+                        <div class="Cubo3dAnimado__Cara Cubo3dAnimado__Cara--Abajo"></div>
+                    </div>
+                    <div class="ReglaFlotante ReglaFlotante--1">SI lesión &gt; 2cm</div>
+                    <div class="ReglaFlotante ReglaFlotante--2">ENTONCES seguimiento</div>
+                </div>
+                <p class="Portada__VisualLeyenda">Volumen 3D + reglas explicables</p>
+            </div>
+        </div>
+    </div>
+</section>

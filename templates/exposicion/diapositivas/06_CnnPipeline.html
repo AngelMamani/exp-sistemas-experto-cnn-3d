@@ -1,0 +1,61 @@
+{# Diapositiva 06 — CNN-3D: Pipeline y 2D vs 3D #}
+<section class="Slide Slide--Cnn Slide--CnnPipeline" id="cnn-pipeline" data-slide-id="cnn-pipeline" data-indice="5">
+    <div class="Slide__Contenedor CnnContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Grande">
+            <span class="Etiqueta Etiqueta--Cnn">Diapositiva 06 · Arquitectura CNN-3D</span>
+            <h2 class="TituloSlide TituloSlide--Destacado TituloSlide--Cnn">¿Cómo procesa un volumen la red?</h2>
+            <p class="LeadSlide LeadSlide--Grande">
+                Cinco etapas en cadena. <strong>Haz clic en cada paso</strong> o anima el recorrido completo.
+            </p>
+        </header>
+
+        <div class="CnnGrid CnnGrid--Pipeline">
+            <div class="PanelGlass CnnPanel">
+                <h3 class="CnnPanel__Titulo CnnPanel__Titulo--Grande">⚡ Pipeline 3D</h3>
+                <p class="CnnPanel__Intro">Así fluye un volumen dentro de la red neuronal.</p>
+                <div class="PipelineCnn PipelineCnn--Interactivo" id="pipelineCnn">
+                    {% for Paso in PasosPipelineCnn %}
+                    <button type="button" class="PipelineCnn__Paso{% if forloop.first %} is-activo{% endif %}{% if forloop.last %} PipelineCnn__Paso--Salida{% endif %}" data-paso-id="{{ Paso.Id }}">
+                        {{ Paso.Titulo }}
+                    </button>
+                    {% endfor %}
+                </div>
+                <button type="button" class="Boton Boton--Secundario Boton--Ancho" id="btnAnimarPipelineCnn">▶ Animar pipeline completo</button>
+                <div class="CnnPasoDetalle CnnPasoDetalle--Grande" id="cnnPasoDetalle">
+                    <h4 id="cnnPasoTitulo">{{ PasosPipelineCnn.0.Titulo }}</h4>
+                    <p id="cnnPasoTexto">{{ PasosPipelineCnn.0.Descripcion }}</p>
+                    <p class="CnnPasoDetalle__Ejemplo" id="cnnPasoEjemplo">Ejemplo: {{ PasosPipelineCnn.0.Ejemplo }}</p>
+                </div>
+            </div>
+
+            <div class="PanelGlass CnnPanel">
+                <h3 class="CnnPanel__Titulo CnnPanel__Titulo--Grande">📐 CNN 2D vs CNN 3D</h3>
+                <p class="CnnPanel__Intro">Cambia de pestaña para entender la tercera dimensión.</p>
+                <div class="CnnTabs" id="tabsCnn">
+                    {% for Tipo in Comparacion2d3d %}
+                    <button type="button" class="CnnTab CnnTab--Grande{% if forloop.first %} is-activo{% endif %}" data-tab="{{ Tipo.Id }}">
+                        {{ Tipo.Titulo }}
+                    </button>
+                    {% endfor %}
+                </div>
+                {% for Tipo in Comparacion2d3d %}
+                <div class="CnnTabPanel CnnTabPanel--Grande{% if forloop.first %} is-activo{% endif %}" data-panel="{{ Tipo.Id }}">
+                    <p class="CnnTabPanel__Desc">{{ Tipo.Descripcion }}</p>
+                    <div class="CnnAnalogia CnnAnalogia--Grande">
+                        <strong>💡 Analogía:</strong> {{ Tipo.Analogia }}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <table class="TablaComparativa TablaComparativa--Grande CnnTabla">
+                    <thead><tr><th></th><th>CNN 2D</th><th>CNN 3D</th></tr></thead>
+                    <tbody>
+                        <tr><td>Entrada</td><td>Imagen plana</td><td>Volumen / video</td></tr>
+                        <tr><td>Uso real</td><td>RX, fotos</td><td>MRI, CT, vigilancia</td></tr>
+                        <tr><td>Aprende</td><td>Patrones 2D</td><td>Profundidad + tiempo</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

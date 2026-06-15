@@ -1,0 +1,79 @@
+{# Diapositiva 04 — SE: Caso real MYCIN + simulación #}
+<section class="Slide Slide--Se Slide--SeCaso" id="se-caso-mycin" data-slide-id="se-caso-mycin" data-indice="3">
+    <div class="Slide__Contenedor SeContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Grande">
+            <span class="Etiqueta Etiqueta--Se">Diapositiva 04 · Caso real</span>
+            <h2 class="TituloSlide TituloSlide--Destacado">{{ CasoSe.Titulo }} — {{ CasoSe.Subtitulo }}</h2>
+            <p class="LeadSlide LeadSlide--Grande">
+                {{ CasoSe.Dominio }} · {{ CasoSe.Anio }} — {{ CasoSe.Descripcion }}
+            </p>
+        </header>
+
+        <div class="SeGrid SeGrid--Caso">
+            <div class="PanelGlass SePanel">
+                <h3 class="SePanel__Titulo SePanel__Titulo--Grande">🔄 Flujo de inferencia</h3>
+                <p class="SePanel__Intro">Así razona el motor. Haz clic en un paso o anima todo.</p>
+                <div class="SeFlujoPasos" id="flujoSe">
+                    {% for Paso in PasosFlujoSe %}
+                    <button type="button" class="SeFlujoPaso{% if forloop.first %} is-activo{% endif %}" data-paso-id="{{ Paso.Id }}">
+                        {{ Paso.Titulo }}
+                    </button>
+                    {% endfor %}
+                </div>
+                <button type="button" class="Boton Boton--Secundario Boton--Ancho" id="btnAnimarFlujoSe">▶ Animar flujo</button>
+                <div class="SePasoDetalle" id="sePasoDetalle">
+                    <h4 id="sePasoTitulo">{{ PasosFlujoSe.0.Titulo }}</h4>
+                    <p id="sePasoTexto">{{ PasosFlujoSe.0.Descripcion }}</p>
+                </div>
+
+                <div class="CasoSe__Sintomas" id="sintomasMycin">
+                    <h4 class="CasoSe__Subtitulo">Síntomas del paciente</h4>
+                    {% for Sintoma in CasoSe.Sintomas %}
+                    <label class="CasoSe__Check">
+                        <input type="checkbox" data-hecho="{{ Sintoma.Clave }}"{% if Sintoma.Valor %} checked{% endif %}>
+                        <span>{{ Sintoma.Etiqueta }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+                <button type="button" class="Boton Boton--Primario Boton--Xl Boton--Ancho" id="btnSimularMycin">
+                    ⚡ Simular con Django
+                </button>
+            </div>
+
+            <div class="PanelGlass SePanel SePanel--Timeline">
+                <header class="SeResultadoMotor__Cabecera">
+                    <h3 class="SePanel__Titulo SePanel__Titulo--Grande">📊 Resultado del motor</h3>
+                    <p class="SeResultadoMotor__Esperado">
+                        <span class="SeResultadoMotor__Etiqueta">Resultado esperado</span>
+                        {{ CasoSe.ResultadoEsperado }}
+                    </p>
+                </header>
+
+                <div class="SeResultadoMotor__Stats" id="seStats" hidden>
+                    <div class="SeStat">
+                        <span class="SeStat__Num" id="seStatEvaluadas">0</span>
+                        <span class="SeStat__Label">Reglas evaluadas</span>
+                    </div>
+                    <div class="SeStat SeStat--Exito">
+                        <span class="SeStat__Num" id="seStatActivadas">0</span>
+                        <span class="SeStat__Label">Activadas</span>
+                    </div>
+                    <div class="SeStat SeStat--Neutro">
+                        <span class="SeStat__Num" id="seStatPasos">0</span>
+                        <span class="SeStat__Label">Pasos del log</span>
+                    </div>
+                </div>
+
+                <div class="SeTimelineWrap">
+                    <div id="seTimeline" class="SeTimeline">
+                        <p class="Placeholder Placeholder--Grande SeTimeline__Vacio">
+                            Presiona «Simular con Django» para ver el razonamiento regla por regla.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="seConclusion" class="SeConclusion" hidden></div>
+            </div>
+        </div>
+    </div>
+</section>

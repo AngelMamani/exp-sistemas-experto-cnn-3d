@@ -1,0 +1,32 @@
+{# Diapositiva 05 — CNN-3D: Concepto #}
+<section class="Slide Slide--Cnn Slide--CnnConcepto" id="cnn-concepto" data-slide-id="cnn-concepto" data-indice="4">
+    <div class="Slide__Contenedor CnnContenedor CnnContenedor--Centrado">
+        <header class="EncabezadoSlide EncabezadoSlide--Centrado">
+            <span class="Etiqueta Etiqueta--Cnn">Diapositiva 05 · CNN-3D</span>
+            <h2 class="TituloSlide TituloSlide--Destacado TituloSlide--Cnn">{{ DefinicionCnn.Titulo }}</h2>
+            <p class="LeadSlide LeadSlide--Grande CnnLead--Centrado">{{ DefinicionCnn.Texto }}</p>
+            <p class="CnnFormula CnnFormula--Centrada">{{ DefinicionCnn.Formula }}</p>
+        </header>
+
+        <div class="CnnBloquesExplicativos CnnBloquesExplicativos--Solo">
+            {% for Punto in PuntosClaveCnn %}
+            <article class="CnnBloqueExplicativo">
+                <span class="CnnBloqueExplicativo__Num">{{ forloop.counter }}</span>
+                <h3 class="CnnBloqueExplicativo__Titulo">{{ Punto.Titulo }}</h3>
+                <p class="CnnBloqueExplicativo__Texto">{{ Punto.Texto }}</p>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div class="CnnPieConcepto">
+            <div class="CitaCnn CitaCnn--Extra">
+                <span class="CitaCnn__Label">Ejemplo de salida CNN-3D</span>
+                Entrada: volumen MRI 128×128×64<br>
+                Salida: <strong>Glioma 87%</strong> · región temporal · lesión 2.4 cm
+            </div>
+            <p class="CnnNotaPie">
+                La CNN-3D <strong>detecta patrones</strong> pero no explica con reglas — eso lo hace el Sistema Experto.
+            </p>
+        </div>
+    </div>
+</section>

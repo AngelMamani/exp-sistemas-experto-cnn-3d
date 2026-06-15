@@ -1,0 +1,14 @@
+<nav class="NavLateral" id="navLateral" aria-label="Diapositivas">
+    {% for Diapositiva in Diapositivas %}
+    <button
+        type="button"
+        class="NavLateral__Item{% if forloop.first %} NavLateral__Item--Activo{% endif %}"
+        data-indice="{{ forloop.counter0 }}"
+        data-slide="{{ Diapositiva.Id }}"
+        title="{{ Diapositiva.Titulo }}"
+    >
+        <span class="NavLateral__Num">{{ Diapositiva.Numero|stringformat:"02d" }}</span>
+        <span class="NavLateral__Titulo">{{ Diapositiva.Titulo }}</span>
+    </button>
+    {% endfor %}
+</nav>

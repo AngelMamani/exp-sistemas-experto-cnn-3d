@@ -1,0 +1,163 @@
+/* 03_SeArquitectura.css — Diapositiva 03: arquitectura */
+
+.Slide--SeArquitectura {
+    background: radial-gradient(ellipse at 70% 20%, rgba(52, 211, 153, 0.08), transparent 50%),
+                var(--color-fondo);
+}
+
+.Slide--SeArquitectura .SeContenedor { max-width: 1200px; }
+
+.TituloSlide--Destacado {
+    background: linear-gradient(135deg, #fff 30%, var(--color-se) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.SeGrid--Arquitectura {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.SePanel__Titulo--Grande {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    color: var(--color-se);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.ArquitecturaInteractiva {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ArqNodo__Fila { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+.ArqNodo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 22px;
+    min-width: 140px;
+    border-radius: 14px;
+    border: 2px solid var(--color-borde);
+    background: var(--color-glass);
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.ArqNodo span:first-child { font-size: 1.6rem; }
+
+.ArqNodo:hover,
+.ArqNodo.is-activo {
+    border-color: var(--color-se);
+    background: rgba(52, 211, 153, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(52, 211, 153, 0.2);
+}
+
+.ArqNodo--Core.is-activo { border-color: var(--color-cnn); background: rgba(56, 189, 248, 0.12); }
+.ArqNodo--Top { min-width: 220px; }
+
+.ArqDetalle--Grande {
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid var(--color-borde);
+    background: var(--color-fondo);
+    min-height: 150px;
+}
+
+.ArqDetalle--Grande h4 {
+    font-size: clamp(1.15rem, 2vw, 1.3rem);
+    color: var(--color-se);
+    margin-bottom: 10px;
+}
+
+.ArqDetalle--Grande p {
+    font-size: clamp(1rem, 1.5vw, 1.12rem);
+    line-height: 1.65;
+    color: var(--color-texto);
+}
+
+.ArqDetalle__Ejemplo {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: rgba(52, 211, 153, 0.08);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--color-se);
+}
+
+.SeTabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+
+.SeTab {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--color-borde);
+    background: transparent;
+    color: var(--color-texto-suave);
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.SeTab--Grande { font-size: clamp(0.95rem, 1.4vw, 1.05rem); }
+
+.SeTab.is-activo {
+    background: var(--color-se);
+    color: #000;
+    border-color: var(--color-se);
+    font-weight: 600;
+}
+
+.SeTabPanel { display: none; }
+.SeTabPanel.is-activo { display: block; }
+
+.SeTabPanel__Desc {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.65;
+    color: var(--color-texto);
+    margin-bottom: 12px;
+}
+
+.SeAnalogia--Grande {
+    padding: 16px;
+    border-radius: 10px;
+    background: var(--color-glass);
+    font-size: clamp(1rem, 1.4vw, 1.08rem);
+    margin-bottom: 20px;
+}
+
+.SeFlujoMini {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px dashed var(--color-borde);
+}
+
+.SeFlujoMini__Titulo {
+    font-size: 0.9rem;
+    color: var(--color-se);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.SeFlujoMini__Lista {
+    padding-left: 20px;
+    font-size: 0.95rem;
+    color: var(--color-texto-suave);
+    line-height: 1.8;
+}
+
+@media (max-width: 1000px) {
+    .SeGrid--Arquitectura { grid-template-columns: 1fr; }
+}

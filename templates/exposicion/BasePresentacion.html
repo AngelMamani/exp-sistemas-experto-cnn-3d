@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ TituloPresentacion }} | {{ Institucion }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/Tokens.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Deck.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Componentes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/01_Portada.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/02_SistemaExperto.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/03_SeArquitectura.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/04_SeCasoMycin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/05_CnnConcepto.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/06_CnnPipeline.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/07_CnnCasos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/08_Comparacion.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/09_Hibrido.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/10_Evaluacion.css' %}">
+    <link rel="stylesheet" href="{% static 'css/diapositivas/11_Resumen.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Animaciones.css' %}">
+</head>
+<body>
+    <canvas id="fondoParticulas" class="FondoParticulas" aria-hidden="true"></canvas>
+
+    {% include "exposicion/partials/AyudaModal.html" %}
+    {% include "exposicion/partials/NavegacionLateral.html" %}
+
+    <main class="Deck" id="deck" data-total="{{ TotalDiapositivas }}">
+        <div class="Deck__Viewport" id="deckViewport">
+            {% block slides %}{% endblock %}
+        </div>
+    </main>
+
+    {% include "exposicion/partials/ControlesDeck.html" %}
+
+    {{ PresentacionConfig|json_script:"presentacion-data" }}
+    <script src="{% static 'js/vendor/chart.umd.min.js' %}"></script>
+    <script src="{% static 'js/ConfigPresentacion.js' %}"></script>
+    <script src="{% static 'js/ClienteApi.js' %}"></script>
+    <script src="{% static 'js/MotorPresentacion.js' %}"></script>
+    <script src="{% static 'js/FondoParticulas.js' %}"></script>
+    <script src="{% static 'js/GraficosEvaluacion.js' %}"></script>
+    <script src="{% static 'js/diapositivas/03_SeArquitecturaInteractivo.js' %}"></script>
+    <script src="{% static 'js/diapositivas/04_SeCasoMycinInteractivo.js' %}"></script>
+    <script src="{% static 'js/diapositivas/06_CnnPipelineInteractivo.js' %}"></script>
+    <script src="{% static 'js/diapositivas/07_CnnCasosInteractivo.js' %}"></script>
+    <script src="{% static 'js/diapositivas/08_ComparacionInteractivo.js' %}"></script>
+    <script src="{% static 'js/diapositivas/09_HibridoInteractivo.js' %}"></script>
+    <script src="{% static 'js/diapositivas/10_EvaluacionInteractivo.js' %}"></script>
+    <script src="{% static 'js/diapositivas/11_ResumenInteractivo.js' %}"></script>
+    <script src="{% static 'js/Main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+/* 06_CnnPipeline.css — Diapositiva 06: pipeline + 2D vs 3D */
+
+.Slide--CnnPipeline {
+    background: radial-gradient(ellipse at 30% 20%, rgba(56, 189, 248, 0.1), transparent 50%),
+                var(--color-fondo-2);
+}
+
+.Slide--CnnPipeline .CnnContenedor { max-width: 1200px; }
+
+.TituloSlide--Cnn {
+    background: linear-gradient(135deg, #fff 30%, var(--color-cnn) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.CnnGrid--Pipeline {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.CnnPanel__Titulo--Grande {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    color: var(--color-cnn);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.CnnPanel__Intro {
+    font-size: clamp(1rem, 1.4vw, 1.08rem);
+    color: var(--color-texto-suave);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.PipelineCnn--Interactivo {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.PipelineCnn--Interactivo .PipelineCnn__Paso {
+    cursor: pointer;
+    border: 2px solid var(--color-borde);
+    font-family: inherit;
+    width: 100%;
+    text-align: left;
+    transition: var(--transicion);
+}
+
+.PipelineCnn--Interactivo .PipelineCnn__Paso:hover,
+.PipelineCnn--Interactivo .PipelineCnn__Paso.is-activo {
+    border-color: var(--color-cnn);
+    background: rgba(56, 189, 248, 0.12);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    transform: none;
+}
+
+.CnnPasoDetalle--Grande {
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--color-borde);
+    background: var(--color-fondo);
+    min-height: 130px;
+}
+
+.CnnPasoDetalle--Grande h4 {
+    font-size: 1.05rem;
+    color: var(--color-cnn);
+    margin-bottom: 8px;
+}
+
+.CnnPasoDetalle--Grande p {
+    font-size: 0.98rem;
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+.CnnPasoDetalle__Ejemplo {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(56, 189, 248, 0.08);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    color: var(--color-cnn);
+}
+
+.CnnTabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+
+.CnnTab {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--color-borde);
+    background: transparent;
+    color: var(--color-texto-suave);
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.CnnTab--Grande { font-size: clamp(0.95rem, 1.4vw, 1.05rem); }
+
+.CnnTab.is-activo {
+    background: var(--color-cnn);
+    color: #000;
+    border-color: var(--color-cnn);
+    font-weight: 600;
+}
+
+.CnnTabPanel { display: none; }
+.CnnTabPanel.is-activo { display: block; }
+
+.CnnTabPanel__Desc {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.65;
+    color: var(--color-texto);
+    margin-bottom: 12px;
+}
+
+.CnnAnalogia--Grande {
+    padding: 16px;
+    border-radius: 10px;
+    background: var(--color-glass);
+    font-size: clamp(1rem, 1.4vw, 1.08rem);
+    margin-bottom: 16px;
+}
+
+.CnnTabla { margin-top: 8px; }
+
+@media (max-width: 1000px) {
+    .CnnGrid--Pipeline { grid-template-columns: 1fr; }
+}

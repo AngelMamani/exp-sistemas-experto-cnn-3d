@@ -1,0 +1,76 @@
+{# Diapositiva 07 — CNN-3D: Casos reales + simulación #}
+<section class="Slide Slide--Cnn Slide--CnnCasos" id="cnn-casos" data-slide-id="cnn-casos" data-indice="6">
+    <div class="Slide__Contenedor CnnContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Grande">
+            <span class="Etiqueta Etiqueta--Cnn">Diapositiva 07 · Casos reales</span>
+            <h2 class="TituloSlide TituloSlide--Destacado TituloSlide--Cnn">CNN-3D en la práctica</h2>
+            <p class="LeadSlide LeadSlide--Grande CnnLead--Compacto">
+                Medicina, video e industria. <strong>Selecciona un caso</strong> y analiza el volumen con Django.
+            </p>
+        </header>
+
+        <div class="CasosGrid CasosGrid--Cnn" id="casosCnnGrid">
+            {% for Caso in CasosCnn %}
+            <button type="button" class="CasoCard CasoCard--Cnn{% if forloop.first %} is-seleccionado{% endif %}" data-caso-id="{{ Caso.Id }}">
+                <span class="CasoCard__Dominio">{{ Caso.Dominio }} · {{ Caso.Anio }}</span>
+                <h3 class="CasoCard__Titulo">{{ Caso.Titulo }}</h3>
+                <p class="CasoCard__Sub">{{ Caso.Subtitulo }}</p>
+            </button>
+            {% endfor %}
+        </div>
+
+        <div class="CnnGrid CnnGrid--CasoDetalle">
+            <div class="PanelGlass CnnPanel" id="casoCnnDetallePanel">
+                {% with Caso=CasosCnn.0 %}
+                <h3 class="CnnPanel__Titulo CnnPanel__Titulo--Grande" id="casoCnnTitulo">{{ Caso.Titulo }} — {{ Caso.Subtitulo }}</h3>
+                <p class="CasoDetalle__Desc" id="casoCnnDesc">{{ Caso.Descripcion }}</p>
+                <div class="CasoDetalle__Bloque">
+                    <h4 class="CasoDetalle__Subtitulo">📥 Entrada del volumen</h4>
+                    <ul class="CasoDetalle__Lista" id="casoCnnEntrada">
+                        {% for Item in Caso.EntradaLegible %}
+                        <li>{{ Item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="CasoDetalle__Bloque CasoDetalle__Bloque--Esperado">
+                    <h4 class="CasoDetalle__Subtitulo">🎯 Resultado esperado</h4>
+                    <p id="casoCnnEsperado" class="CasoDetalle__EsperadoTexto">{{ Caso.ResultadoEsperado }}</p>
+                </div>
+                {% endwith %}
+                <button type="button" class="Boton Boton--Primario Boton--Xl Boton--Ancho" id="btnEjecutarCasoCnn">
+                    ⚡ Analizar volumen con Django
+                </button>
+            </div>
+
+            <div class="PanelGlass CnnPanel CnnPanel--Resultado">
+                <header class="CnnResultadoMotor__Cabecera">
+                    <h3 class="CnnPanel__Titulo CnnPanel__Titulo--Grande">📊 Salida de la CNN-3D</h3>
+                    <p class="CnnResultadoMotor__Intro">Clase detectada, región, tamaño y confianza del modelo.</p>
+                </header>
+
+                <div class="CnnResultadoMotor__Stats" id="cnnStats" hidden>
+                    <div class="CnnStat">
+                        <span class="CnnStat__Num" id="cnnStatConfianza">—</span>
+                        <span class="CnnStat__Label">Confianza</span>
+                    </div>
+                    <div class="CnnStat CnnStat--Exito">
+                        <span class="CnnStat__Num" id="cnnStatTamano">—</span>
+                        <span class="CnnStat__Label">Tamaño</span>
+                    </div>
+                    <div class="CnnStat">
+                        <span class="CnnStat__Num" id="cnnStatRegion">—</span>
+                        <span class="CnnStat__Label">Región</span>
+                    </div>
+                </div>
+
+                <div class="CnnResultadoWrap">
+                    <div id="casoCnnResultado" class="CasoResultado CasoResultado--Cnn">
+                        <p class="Placeholder CnnResultado__Vacio">
+                            👆 Elige un caso y presiona el botón para ver el análisis en vivo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,132 @@
+{# Diapositiva 10 — Evaluación interactiva #}
+<section class="Slide Slide--Eval Slide--Evaluacion" id="evaluacion" data-slide-id="evaluacion" data-indice="9">
+    <div class="Slide__Contenedor EvalContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Centrado EvalEncabezado">
+            <span class="Etiqueta">Diapositiva 10 · Evaluación</span>
+            <h2 class="TituloSlide EvalTitulo">{{ EvaluacionIntro.Titulo }}</h2>
+            <p class="LeadSlide EvalLead">{{ EvaluacionIntro.Texto }}</p>
+        </header>
+
+        <div class="EvalSelector" id="evalSelector">
+            <div class="EvalDimensiones" id="evalDimensiones">
+                {% for Dim in EvaluacionDimensiones %}
+                <button type="button"
+                    class="EvalCard EvalCard--{{ Dim.Color }}{% if forloop.first %} is-activa{% endif %}"
+                    data-eval-id="{{ Dim.Id }}"
+                    aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">
+                    <span class="EvalCard__Letra">{{ Dim.Letra }}</span>
+                    <span class="EvalCard__Icono">{{ Dim.Icono }}</span>
+                    <h3 class="EvalCard__Titulo">{{ Dim.Titulo }}</h3>
+                    <p class="EvalCard__Sub">{{ Dim.Subtitulo }}</p>
+                    <span class="EvalCard__Indicador" aria-hidden="true"></span>
+                </button>
+                {% endfor %}
+            </div>
+            <p class="EvalHint" id="evalHint">Clic en A · B · C — o teclas <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></p>
+        </div>
+
+        <div class="EvalGrid" id="evalGrid" data-dimension-activa="cnn">
+            <div class="PanelGlass EvalPanel EvalPanel--Detalle" id="evalPanelDetalle">
+                <div class="EvalDetalle__Inner" id="evalDetalleInner">
+                    {% with Dim=EvaluacionDimensiones.0 %}
+                    <div class="EvalDetalle__Cabecera">
+                        <h3 class="EvalPanel__Titulo" id="evalDetalleTitulo">{{ Dim.Icono }} {{ Dim.Titulo }}</h3>
+                        <span class="EvalBadge EvalBadge--Cnn" id="evalBadge">Métricas técnicas</span>
+                    </div>
+                    <p class="EvalDetalle__Desc" id="evalDetalleDesc">{{ Dim.Descripcion }}</p>
+
+                    <h4 class="EvalDetalle__Subtitulo">Criterios medidos <span class="EvalDetalle__Hint">— clic para resaltar</span></h4>
+                    <ul class="EvalCriterios EvalCriterios--Grid" id="evalCriterios">
+                        {% for C in Dim.Criterios %}
+                        <li class="EvalCriterio{% if forloop.first %} is-activo{% endif %}" data-criterio-idx="{{ forloop.counter0 }}">
+                            <span class="EvalCriterio__Nombre">{{ C.Nombre }}</span>
+                            <span class="EvalCriterio__Valor">{{ C.Valor }}</span>
+                            <p class="EvalCriterio__Detalle">{{ C.Detalle }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="EvalEjemplo" id="evalEjemplo">
+                        <span class="EvalEjemplo__Icono">💡</span>
+                        <div>
+                            <strong>Ejemplo real del proyecto</strong>
+                            <p>{{ Dim.Ejemplo }}</p>
+                        </div>
+                    </div>
+                    {% endwith %}
+                </div>
+            </div>
+
+            <div class="PanelGlass EvalPanel EvalPanel--Graficos" id="evalPanelGraficos">
+                <div class="EvalGraficos__Cabecera">
+                    <h3 class="EvalPanel__Titulo" id="evalGraficosTitulo">📊 Métricas CNN (Django)</h3>
+                    <span class="EvalLive" id="evalLive" hidden>
+                        <span class="EvalLive__Punto"></span> Datos en vivo
+                    </span>
+                </div>
+
+                <div class="EvalGraficoVista is-visible" id="evalVistaCnn" data-vista="cnn">
+                    <div class="EvalKpis" id="evalKpisCnn">
+                        <div class="EvalKpi"><span class="EvalKpi__Val">91%</span><span class="EvalKpi__Lbl">Precision</span></div>
+                        <div class="EvalKpi"><span class="EvalKpi__Val">88%</span><span class="EvalKpi__Lbl">Recall</span></div>
+                        <div class="EvalKpi"><span class="EvalKpi__Val">89%</span><span class="EvalKpi__Lbl">F1</span></div>
+                        <div class="EvalKpi"><span class="EvalKpi__Val">76%</span><span class="EvalKpi__Lbl">IoU</span></div>
+                    </div>
+                    <div class="EvalCharts EvalCharts--Apilado">
+                        <div class="EvalCharts__Item">
+                            <h4>Precision · Recall · F1 · IoU</h4>
+                            <div class="EvalChartWrap EvalChartWrap--Barras">
+                                <canvas id="graficoMetricas" height="160"></canvas>
+                            </div>
+                        </div>
+                        <div class="EvalCharts__Item EvalCharts__Item--Dona">
+                            <h4>Matriz de confusión</h4>
+                            <div class="EvalChartWrap EvalChartWrap--Dona">
+                                <canvas id="graficoConfusion" height="140"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="EvalGraficoVista" id="evalVistaSe" data-vista="se">
+                    <div class="EvalBarras" id="evalBarrasSe"></div>
+                    <p class="EvalNota">El SE no se evalúa con IoU — se mide lógica, trazabilidad y aceptación clínica.</p>
+                </div>
+
+                <div class="EvalGraficoVista" id="evalVistaHibrido" data-vista="hibrido">
+                    <div class="EvalPipelineMini" id="evalPipelineMini">
+                        <span class="EvalPipelineMini__Nodo EvalPipelineMini__Nodo--Cnn">MRI 3D</span>
+                        <span class="EvalPipelineMini__Flecha">→</span>
+                        <span class="EvalPipelineMini__Nodo EvalPipelineMini__Nodo--Cnn">CNN</span>
+                        <span class="EvalPipelineMini__Flecha">→</span>
+                        <span class="EvalPipelineMini__Nodo EvalPipelineMini__Nodo--Puente">Traducción</span>
+                        <span class="EvalPipelineMini__Flecha">→</span>
+                        <span class="EvalPipelineMini__Nodo EvalPipelineMini__Nodo--Se">SE</span>
+                        <span class="EvalPipelineMini__Flecha">→</span>
+                        <span class="EvalPipelineMini__Nodo EvalPipelineMini__Nodo--Se">Veredicto</span>
+                    </div>
+                    <div class="EvalHibridoStats">
+                        <div class="EvalHibridoStat">
+                            <span class="EvalHibridoStat__Num" id="evalStatTiempo" data-target="12.4">12.4s</span>
+                            <span class="EvalHibridoStat__Label">Tiempo total</span>
+                        </div>
+                        <div class="EvalHibridoStat">
+                            <span class="EvalHibridoStat__Num" id="evalStatUsabilidad" data-target="4.2">4.2/5</span>
+                            <span class="EvalHibridoStat__Label">Usabilidad</span>
+                        </div>
+                        <div class="EvalHibridoStat">
+                            <span class="EvalHibridoStat__Num" id="evalStatPrecision" data-target="91">91%</span>
+                            <span class="EvalHibridoStat__Label">Precisión flujo</span>
+                        </div>
+                    </div>
+                    <p class="EvalNota">
+                        Los gráficos CNN se actualizan al ejecutar el flujo híbrido en la diapositiva 09.
+                    </p>
+                    <button type="button" class="Boton Boton--Secundario Boton--Ancho" data-ir-slide="10">
+                        → Ir al cierre
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

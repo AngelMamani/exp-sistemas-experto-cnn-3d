@@ -1,0 +1,74 @@
+{# Diapositiva 03 — SE: Arquitectura y razonamiento #}
+<section class="Slide Slide--Se Slide--SeArquitectura" id="se-arquitectura" data-slide-id="se-arquitectura" data-indice="2">
+    <div class="Slide__Contenedor SeContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Grande">
+            <span class="Etiqueta Etiqueta--Se">Diapositiva 03 · Arquitectura del SE</span>
+            <h2 class="TituloSlide TituloSlide--Destacado">¿Cómo está armado un Sistema Experto?</h2>
+            <p class="LeadSlide LeadSlide--Grande">
+                Seis piezas trabajan juntas. <strong>Haz clic en cada una</strong> para ver qué hace.
+            </p>
+        </header>
+
+        <div class="SeGrid SeGrid--Arquitectura">
+            <div class="PanelGlass SePanel">
+                <div class="ArquitecturaInteractiva" id="arquitecturaSe">
+                    <button type="button" class="ArqNodo ArqNodo--Top is-activo" data-componente="interfaz">
+                        <span>🖥️</span> Interfaz
+                    </button>
+                    <div class="ArqNodo__Fila">
+                        <button type="button" class="ArqNodo" data-componente="base-hechos">
+                            <span>📋</span> Base de hechos
+                        </button>
+                        <button type="button" class="ArqNodo ArqNodo--Core" data-componente="motor-inferencia">
+                            <span>⚙️</span> Motor de inferencia
+                        </button>
+                        <button type="button" class="ArqNodo" data-componente="base-conocimiento">
+                            <span>📚</span> Base de conocimiento
+                        </button>
+                    </div>
+                    <div class="ArqNodo__Fila">
+                        <button type="button" class="ArqNodo" data-componente="explicacion">
+                            <span>💬</span> Explicación
+                        </button>
+                        <button type="button" class="ArqNodo" data-componente="adquisicion">
+                            <span>🎤</span> Adquisición
+                        </button>
+                    </div>
+                </div>
+                <div class="ArqDetalle ArqDetalle--Grande" id="arqDetalleSe">
+                    <h4 id="arqTituloSe">{{ ComponentesSe.0.Titulo }}</h4>
+                    <p id="arqTextoSe">{{ ComponentesSe.0.Descripcion }}</p>
+                    <p class="ArqDetalle__Ejemplo" id="arqEjemploSe">Ejemplo: {{ ComponentesSe.0.Ejemplo }}</p>
+                </div>
+            </div>
+
+            <div class="PanelGlass SePanel">
+                <h3 class="SePanel__Titulo SePanel__Titulo--Grande">🧠 Tipos de razonamiento</h3>
+                <div class="SeTabs" id="tabsSe">
+                    {% for Tipo in TiposInferenciaSe %}
+                    <button type="button" class="SeTab SeTab--Grande{% if forloop.first %} is-activo{% endif %}" data-tab="{{ Tipo.Id }}">
+                        {{ Tipo.Titulo }}
+                    </button>
+                    {% endfor %}
+                </div>
+                {% for Tipo in TiposInferenciaSe %}
+                <div class="SeTabPanel SeTabPanel--Grande{% if forloop.first %} is-activo{% endif %}" data-panel="{{ Tipo.Id }}">
+                    <p class="SeTabPanel__Desc">{{ Tipo.Descripcion }}</p>
+                    <div class="SeAnalogia SeAnalogia--Grande">
+                        <strong>💡 Analogía:</strong> {{ Tipo.Analogia }}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="SeFlujoMini">
+                    <h4 class="SeFlujoMini__Titulo">Flujo resumido</h4>
+                    <ol class="SeFlujoMini__Lista">
+                        {% for Paso in PasosFlujoSe %}
+                        <li>{{ Paso.Titulo }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+/* Animaciones.css — Entradas por diapositiva */
+.Slide.is-active .anim-entrada {
+    animation: EntradaSlide 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+.Slide.is-active .anim-retraso-1 { animation-delay: 0.1s; }
+.Slide.is-active .anim-retraso-2 { animation-delay: 0.2s; }
+.Slide.is-active .anim-retraso-3 { animation-delay: 0.35s; }
+
+@keyframes EntradaSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.Slide.is-active .FilaTabla {
+    animation: FadeInFila 0.5s ease backwards;
+    animation-delay: calc(var(--delay) * 0.08s);
+}
+
+@keyframes FadeInFila {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}

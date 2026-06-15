@@ -1,0 +1,38 @@
+{# Diapositiva 11 — Cierre #}
+<section class="Slide Slide--Final Slide--Resumen" id="resumen" data-slide-id="resumen" data-indice="10">
+    <div class="Slide__Contenedor ResumenContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Centrado ResumenEncabezado">
+            <span class="Etiqueta Etiqueta--Glow">Diapositiva 11 · Cierre</span>
+            <h2 class="TituloSlide ResumenTitulo">En resumen</h2>
+            <p class="LeadSlide ResumenLead">{{ ResumenMensaje }}</p>
+        </header>
+
+        <div class="ResumenPilares" id="resumenPilares">
+            {% for Pilar in ResumenPilares %}
+            <article class="ResumenPilar ResumenPilar--{{ Pilar.Color }}" data-pilar="{{ Pilar.Id }}">
+                <span class="ResumenPilar__Icono">{{ Pilar.Icono }}</span>
+                <h3 class="ResumenPilar__Titulo">{{ Pilar.Titulo }}</h3>
+                <p class="ResumenPilar__Texto">{{ Pilar.Texto }}</p>
+                <span class="ResumenPilar__Glow" aria-hidden="true"></span>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div class="ResumenCierre">
+
+            <div class="ResumenCreditos">
+                <p class="ResumenCreditos__Inst">{{ Institucion }} — {{ Curso }}</p>
+                <p class="ResumenCreditos__Fecha">Exposición {{ FechaExposicion }}</p>
+                <div class="ResumenIntegrantes">
+                    {% for Integrante in Integrantes %}
+                    <p class="ResumenIntegrantes__Nombre">{{ Integrante }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <button type="button" class="Boton Boton--Ghost Boton--Xl ResumenBtnInicio" data-ir-slide="0">
+                ↑ Volver al inicio
+            </button>
+        </div>
+    </div>
+</section>

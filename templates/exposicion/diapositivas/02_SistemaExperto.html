@@ -1,0 +1,32 @@
+{# Diapositiva 02 — SE: Concepto #}
+<section class="Slide Slide--Se Slide--SeConcepto" id="sistema-experto" data-slide-id="sistema-experto" data-indice="1">
+    <div class="Slide__Contenedor SeContenedor SeContenedor--Centrado">
+        <header class="EncabezadoSlide EncabezadoSlide--Centrado">
+            <span class="Etiqueta Etiqueta--Se">Diapositiva 02 · Sistema Experto</span>
+            <h2 class="TituloSlide TituloSlide--Destacado">{{ DefinicionSe.Titulo }}</h2>
+            <p class="LeadSlide LeadSlide--Grande SeLead--Centrado">{{ DefinicionSe.Texto }}</p>
+            <p class="SeFormula SeFormula--Centrada">{{ DefinicionSe.Formula }}</p>
+        </header>
+
+        <div class="SeBloquesExplicativos SeBloquesExplicativos--Solo">
+            {% for Punto in PuntosClaveSe %}
+            <article class="SeBloqueExplicativo">
+                <span class="SeBloqueExplicativo__Num">{{ forloop.counter }}</span>
+                <h3 class="SeBloqueExplicativo__Titulo">{{ Punto.Titulo }}</h3>
+                <p class="SeBloqueExplicativo__Texto">{{ Punto.Texto }}</p>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div class="SePieConcepto">
+            <div class="CitaRegla CitaRegla--Extra SeCita">
+                <span class="CitaRegla__Label">Ejemplo de regla SI-ENTONCES</span>
+                SI el paciente tiene fiebre <span class="CitaRegla__Y">Y</span> tos persistente,<br>
+                ENTONCES sospechar infección respiratoria y solicitar estudios.
+            </div>
+            <p class="SeNotaPie">
+                El SE <strong>explica cada decisión</strong>. No ve imágenes 3D — eso lo hace la CNN-3D más adelante.
+            </p>
+        </div>
+    </div>
+</section>

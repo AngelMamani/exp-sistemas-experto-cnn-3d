@@ -1,0 +1,101 @@
+{# Diapositiva 08 — Comparación SE vs CNN-3D interactiva #}
+<section class="Slide Slide--Alerta Slide--Comparacion" id="comparacion" data-slide-id="comparacion" data-indice="7" data-modo-vista="ambos">
+    <div class="Slide__Contenedor ComparacionContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Grande EncabezadoSlide--Centrado">
+            <span class="Etiqueta Etiqueta--Alerta">Diapositiva 08 · Concepto clave</span>
+            <h2 class="TituloSlide TituloSlide--Destacado ComparacionTitulo">No son lo mismo</h2>
+            <p class="LeadSlide LeadSlide--Grande ComparacionLead">
+                <strong>CNN-3D ≠ Sistema Experto</strong> — paradigmas distintos que se integran, no se confunden.
+            </p>
+        </header>
+
+        <div class="ComparacionModos" id="modosComparacion">
+            <button type="button" class="ComparacionModo is-activo" data-modo="ambos">⚖️ Lado a lado</button>
+            <button type="button" class="ComparacionModo ComparacionModo--Se" data-modo="se">🧠 Enfoque SE</button>
+            <button type="button" class="ComparacionModo ComparacionModo--Cnn" data-modo="cnn">👁 Enfoque CNN</button>
+        </div>
+
+        <div class="ComparacionGrid">
+            <div class="PanelGlass ComparacionPanel">
+                <h3 class="ComparacionPanel__Titulo">🎚 Balance visual</h3>
+                <p class="ComparacionPanel__Intro">Arrastra el control para ver qué paradigma pesa más en cada escenario.</p>
+
+                <div class="ComparadorInteractivo ComparadorInteractivo--Grande" id="comparadorInteractivo">
+                    <div class="ComparadorInteractivo__Labels">
+                        <span class="TextoSe">SE <strong id="pctSe">50%</strong></span>
+                        <span class="TextoCnn">CNN <strong id="pctCnn">50%</strong></span>
+                    </div>
+                    <input type="range" class="ComparadorInteractivo__Slider" id="sliderComparador" min="0" max="100" value="50" aria-label="Comparar SE vs CNN">
+                    <div class="ComparadorInteractivo__Ventana ComparadorInteractivo__Ventana--Grande">
+                        <div class="ComparadorInteractivo__Lado ComparadorInteractivo__Lado--Se" id="ladoSe">
+                            <span class="ComparadorInteractivo__Icono">🧠</span>
+                            <h4>Cerebro</h4>
+                            <p id="textoLadoSe">Reglas · Inferencia · Explicación</p>
+                        </div>
+                        <div class="ComparadorInteractivo__Lado ComparadorInteractivo__Lado--Cnn" id="ladoCnn">
+                            <span class="ComparadorInteractivo__Icono">👁</span>
+                            <h4>Ojos</h4>
+                            <p id="textoLadoCnn">Volúmenes · Patrones · Detección</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="ComparacionPanel__Titulo ComparacionPanel__Titulo--Sub">📋 Criterios — haz clic</h3>
+                <div class="ComparacionCriterios" id="listaCriterios">
+                    {% for Criterio in ComparacionCriterios %}
+                    <button type="button" class="ComparacionCriterio{% if forloop.first %} is-activo{% endif %}" data-criterio-id="{{ Criterio.Id }}">
+                        <span class="ComparacionCriterio__Icono">{{ Criterio.Icono }}</span>
+                        <span class="ComparacionCriterio__Nombre">{{ Criterio.Criterio }}</span>
+                        <span class="ComparacionCriterio__Resumen ComparacionCriterio__Resumen--Se">{{ Criterio.Se }}</span>
+                        <span class="ComparacionCriterio__Vs">vs</span>
+                        <span class="ComparacionCriterio__Resumen ComparacionCriterio__Resumen--Cnn">{{ Criterio.Cnn }}</span>
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="PanelGlass ComparacionPanel ComparacionPanel--Detalle" id="panelDetalleComparacion">
+                {% with C=ComparacionCriterios.0 %}
+                <h3 class="ComparacionPanel__Titulo" id="detalleCriterioTitulo">{{ C.Icono }} {{ C.Criterio }}</h3>
+
+                <div class="ComparacionDetalle__Grid">
+                    <article class="ComparacionDetalle__Col ComparacionDetalle__Col--Se" id="detalleColSe">
+                        <span class="ComparacionDetalle__Etiqueta">Sistema Experto</span>
+                        <p class="ComparacionDetalle__Valor" id="detalleValorSe">{{ C.Se }}</p>
+                        <p class="ComparacionDetalle__Texto" id="detalleTextoSe">{{ C.DetalleSe }}</p>
+                    </article>
+                    <article class="ComparacionDetalle__Col ComparacionDetalle__Col--Cnn" id="detalleColCnn">
+                        <span class="ComparacionDetalle__Etiqueta">CNN-3D</span>
+                        <p class="ComparacionDetalle__Valor" id="detalleValorCnn">{{ C.Cnn }}</p>
+                        <p class="ComparacionDetalle__Texto" id="detalleTextoCnn">{{ C.DetalleCnn }}</p>
+                    </article>
+                </div>
+
+                <div class="ComparacionDetalle__Analogia" id="detalleAnalogia">
+                    <strong>💡 Integración:</strong> <span id="detalleAnalogiaTexto">{{ C.Analogia }}</span>
+                </div>
+                {% endwith %}
+
+                <div class="ComparacionEscenarios">
+                    <h4 class="ComparacionEscenarios__Titulo">¿Cuándo usar cada uno?</h4>
+                    <div class="ComparacionEscenarios__Grid" id="escenariosComparacion">
+                        {% for Escenario in ComparacionEscenarios %}
+                        <button type="button" class="ComparacionEscenario ComparacionEscenario--{{ Escenario.Id }}" data-escenario="{{ Escenario.Id }}">
+                            <span class="ComparacionEscenario__Icono">{{ Escenario.Icono }}</span>
+                            <span class="ComparacionEscenario__Titulo">{{ Escenario.Titulo }}</span>
+                            <span class="ComparacionEscenario__Cuando">{{ Escenario.Cuando }}</span>
+                        </button>
+                        {% endfor %}
+                    </div>
+                    <p class="ComparacionEscenarioDetalle" id="escenarioDetalle">
+                        {{ ComparacionEscenarios.0.Ejemplo }}
+                    </p>
+                </div>
+
+                <button type="button" class="Boton Boton--Primario Boton--Ancho" data-ir-slide="8">
+                    ⚡ Ver sistema híbrido →
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,96 @@
+{# Diapositiva 09 — Sistema Híbrido: caso real CNN + SE #}
+<section class="Slide Slide--Hibrido Slide--HibridoEspectacular" id="hibrido" data-slide-id="hibrido" data-indice="8">
+    <div class="Slide__Contenedor HibridoContenedor">
+        <header class="EncabezadoSlide EncabezadoSlide--Centrado HibridoEncabezado">
+            <span class="Etiqueta Etiqueta--Glow">Diapositiva 09 · Trabajo conjunto</span>
+            <h2 class="TituloSlide HibridoTitulo">Sistema Híbrido: un caso real</h2>
+            <p class="LeadSlide HibridoLead">{{ CasoHibrido.MensajeHibrido }}</p>
+        </header>
+
+        <div class="HibridoCasoReal">
+            <div class="HibridoCasoReal__Paciente">
+                <span class="HibridoCasoReal__Etiqueta">Paciente</span>
+                <strong>{{ CasoHibrido.Paciente }}</strong>
+                <p>{{ CasoHibrido.MotivoConsulta }}</p>
+                <p class="HibridoCasoReal__Estudio">📋 {{ CasoHibrido.Estudio }} · {{ CasoHibrido.Volumen }}</p>
+            </div>
+            <div class="HibridoRoles">
+                <article class="HibridoRol HibridoRol--Cnn">
+                    <span class="HibridoRol__Icono">👁</span>
+                    <h4 class="TextoCnn">CNN-3D</h4>
+                    <p>{{ CasoHibrido.RolCnn }}</p>
+                </article>
+                <span class="HibridoRoles__Mas">+</span>
+                <article class="HibridoRol HibridoRol--Se">
+                    <span class="HibridoRol__Icono">🧠</span>
+                    <h4 class="TextoSe">Sistema Experto</h4>
+                    <p>{{ CasoHibrido.RolSe }}</p>
+                </article>
+            </div>
+        </div>
+
+        <div class="HibridoPipeline" id="hibridoPipeline" aria-label="Pipeline híbrido del caso real">
+            {% for Paso in PasosHibrido %}
+            {% if not forloop.first %}
+            <div class="HibridoPuente" data-puente="{{ forloop.counter0 }}">
+                <div class="HibridoPuente__Linea"></div>
+                <span class="HibridoPuente__Pulse" aria-hidden="true"></span>
+            </div>
+            {% endif %}
+            <article class="HibridoNodo HibridoNodo--{{ Paso.Color }}" data-paso="{{ Paso.Id }}" id="nodo-{{ Paso.Id }}">
+                <span class="HibridoNodo__Icono">{{ Paso.Icono }}</span>
+                <h4 class="HibridoNodo__Titulo">{{ Paso.Titulo }}</h4>
+                <p class="HibridoNodo__Estado" id="estado-{{ Paso.Id }}">En espera…</p>
+            </article>
+            {% endfor %}
+        </div>
+
+        <button type="button" class="Boton Boton--Primario Boton--Xl HibridoBoton" id="btnFlujoHibridoSlide">
+            ⚡ Analizar caso de {{ CasoHibrido.Paciente }} con Django
+        </button>
+
+        <div class="HibridoResultados" id="hibridoResultados">
+            <div class="PanelGlass HibridoPanel HibridoPanel--Timeline">
+                <h3 class="HibridoPanel__Titulo">📡 Qué hace cada sistema</h3>
+                <div class="HibridoTimeline" id="hibridoTimeline">
+                    <p class="Placeholder HibridoTimeline__Vacio">
+                        Pulsa el botón: verás primero la <strong class="TextoCnn">CNN</strong> detectar
+                        y luego el <strong class="TextoSe">SE</strong> decidir con reglas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="PanelGlass HibridoPanel HibridoPanel--Veredicto" id="hibridoVeredictoPanel">
+                <h3 class="HibridoPanel__Titulo">🏆 Decisión híbrida (ambos)</h3>
+                <p class="HibridoVeredicto__Esperado">
+                    <span>Resultado esperado del caso:</span>
+                    {{ CasoHibrido.VeredictoEsperado }}
+                </p>
+                <div class="HibridoVeredicto" id="hibridoVeredicto">
+                    <div class="HibridoVeredicto__Placeholder">
+                        <span class="HibridoVeredicto__IconoGrande">🤝</span>
+                        <p>Aquí verás la detección de la CNN y la recomendación del SE en el mismo caso.</p>
+                    </div>
+                </div>
+                <div class="HibridoMetricas" id="hibridoMetricas" hidden>
+                    <div class="HibridoMetrica HibridoMetrica--Cnn">
+                        <span class="HibridoMetrica__Valor" id="metricaConfianza">—</span>
+                        <span class="HibridoMetrica__Label">CNN · confianza</span>
+                    </div>
+                    <div class="HibridoMetrica HibridoMetrica--Se">
+                        <span class="HibridoMetrica__Valor" id="metricaReglas">—</span>
+                        <span class="HibridoMetrica__Label">SE · reglas</span>
+                    </div>
+                    <div class="HibridoMetrica">
+                        <span class="HibridoMetrica__Valor" id="metricaTiempo">—</span>
+                        <span class="HibridoMetrica__Label">Tiempo total</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="HibridoPie">
+            <button type="button" class="Boton Boton--Ghost" data-ir-slide="10">→ Ir al resumen</button>
+        </p>
+    </div>
+</section>

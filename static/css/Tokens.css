@@ -1,0 +1,39 @@
+/* Tokens.css — Design system */
+:root {
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+
+    --color-fondo: #030712;
+    --color-fondo-2: #0a0f1e;
+    --color-superficie: rgba(15, 23, 42, 0.75);
+    --color-glass: rgba(255, 255, 255, 0.04);
+    --color-texto: #f1f5f9;
+    --color-texto-suave: #94a3b8;
+    --color-borde: rgba(255, 255, 255, 0.1);
+
+    --color-cnn: #38bdf8;
+    --color-cnn-glow: rgba(56, 189, 248, 0.4);
+    --color-se: #34d399;
+    --color-se-glow: rgba(52, 211, 153, 0.4);
+    --color-primario: #6366f1;
+    --color-accento: #a78bfa;
+    --color-alerta: #fbbf24;
+
+    --barra-h: 0px;
+    --controles-h: 72px;
+    --nav-w: 200px;
+    --radio: 16px;
+    --radio-lg: 24px;
+    --transicion: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    --transicion-slide: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    --titulo-xl: clamp(2.5rem, 6vw, 4.5rem);
+    --titulo-lg: clamp(2rem, 4.5vw, 3.2rem);
+    --titulo-md: clamp(1.5rem, 3vw, 2.2rem);
+    --texto-lg: clamp(1.1rem, 2vw, 1.35rem);
+    --texto-md: clamp(1rem, 1.5vw, 1.15rem);
+}
+
+@media (max-width: 900px) {
+    :root { --nav-w: 0px; }
+}

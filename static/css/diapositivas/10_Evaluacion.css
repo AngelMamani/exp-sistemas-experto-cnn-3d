@@ -1,0 +1,718 @@
+/* 10_Evaluacion.css — Diapositiva 10: evaluación interactiva */
+
+.Slide--Evaluacion {
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 10px 24px 16px;
+    background:
+        radial-gradient(ellipse at 15% 25%, rgba(56, 189, 248, 0.1), transparent 42%),
+        radial-gradient(ellipse at 85% 75%, rgba(52, 211, 153, 0.08), transparent 42%),
+        radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.06), transparent 55%),
+        var(--color-fondo);
+}
+
+.Slide--Evaluacion .Slide__Contenedor {
+    height: 100%;
+    max-height: 100%;
+}
+
+.EvalContenedor {
+    max-width: 1160px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+}
+
+.EvalEncabezado {
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.EvalTitulo {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 15%, var(--color-cnn) 45%, var(--color-se) 85%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+}
+
+.EvalLead {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: clamp(0.82rem, 1.2vw, 0.92rem);
+    line-height: 1.5;
+    color: var(--color-texto-suave);
+}
+
+/* Selector de dimensiones */
+.EvalSelector {
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.EvalDimensiones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.EvalCard {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 2px solid var(--color-borde);
+    background: var(--color-glass);
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--color-texto);
+    transition: transform 0.25s ease, border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    min-height: 52px;
+    overflow: hidden;
+}
+
+.EvalCard:hover {
+    transform: translateY(-3px);
+}
+
+.EvalCard__Letra {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    opacity: 0.08;
+    transition: opacity 0.3s;
+}
+
+.EvalCard.is-activa .EvalCard__Letra {
+    opacity: 0.18;
+}
+
+.EvalCard__Icono {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.EvalCard.is-activa .EvalCard__Icono {
+    transform: scale(1.15);
+}
+
+.EvalCard__Titulo {
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 1px;
+    line-height: 1.2;
+}
+
+.EvalCard__Sub {
+    font-size: 0.68rem;
+    color: var(--color-texto-suave);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.EvalCard__Indicador {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: transparent;
+    transition: background 0.3s;
+}
+
+.EvalCard--cnn.is-activa,
+.EvalCard--cnn:hover {
+    border-color: var(--color-cnn);
+    background: rgba(56, 189, 248, 0.08);
+    box-shadow: 0 10px 28px rgba(56, 189, 248, 0.18);
+}
+
+.EvalCard--cnn.is-activa .EvalCard__Indicador {
+    background: linear-gradient(90deg, var(--color-cnn), #7dd3fc);
+}
+
+.EvalCard--se.is-activa,
+.EvalCard--se:hover {
+    border-color: var(--color-se);
+    background: rgba(52, 211, 153, 0.08);
+    box-shadow: 0 10px 28px rgba(52, 211, 153, 0.18);
+}
+
+.EvalCard--se.is-activa .EvalCard__Indicador {
+    background: linear-gradient(90deg, var(--color-se), #6ee7b7);
+}
+
+.EvalCard--hibrido.is-activa,
+.EvalCard--hibrido:hover {
+    border-color: var(--color-primario);
+    background: rgba(99, 102, 241, 0.08);
+    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.18);
+}
+
+.EvalCard--hibrido.is-activa .EvalCard__Indicador {
+    background: linear-gradient(90deg, var(--color-primario), var(--color-accento));
+}
+
+.EvalCard--cnn .EvalCard__Titulo { color: var(--color-cnn); }
+.EvalCard--se .EvalCard__Titulo { color: var(--color-se); }
+.EvalCard--hibrido .EvalCard__Titulo { color: var(--color-accento); }
+
+.EvalHint {
+    text-align: center;
+    font-size: 0.65rem;
+    color: var(--color-texto-suave);
+    margin: 5px 0 0;
+    opacity: 0.65;
+}
+
+@media (max-height: 720px) {
+    .EvalHint { display: none; }
+}
+
+.EvalHint kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--color-borde);
+    background: var(--color-glass);
+    font-family: inherit;
+    font-size: 0.68rem;
+}
+
+/* Grid principal */
+.EvalGrid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 10px;
+    align-items: stretch;
+    flex: 1;
+    min-height: 0;
+}
+
+.EvalGrid[data-dimension-activa="cnn"] .EvalPanel--Graficos {
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: inset 0 0 40px rgba(56, 189, 248, 0.04);
+}
+
+.EvalGrid[data-dimension-activa="se"] .EvalPanel--Graficos {
+    border-color: rgba(52, 211, 153, 0.25);
+    box-shadow: inset 0 0 40px rgba(52, 211, 153, 0.04);
+}
+
+.EvalGrid[data-dimension-activa="hibrido"] .EvalPanel--Graficos {
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: inset 0 0 40px rgba(99, 102, 241, 0.04);
+}
+
+.EvalPanel {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.EvalDetalle__Inner {
+    animation: EvalEntrada 0.35s ease;
+}
+
+.EvalDetalle__Inner.is-cambiando {
+    animation: EvalSalida 0.15s ease forwards;
+}
+
+@keyframes EvalEntrada {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes EvalSalida {
+    to { opacity: 0; transform: translateX(8px); }
+}
+
+.EvalDetalle__Cabecera,
+.EvalGraficos__Cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.EvalPanel__Titulo {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-texto);
+}
+
+.EvalBadge {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid;
+}
+
+.EvalBadge--Cnn {
+    color: var(--color-cnn);
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.EvalBadge--Se {
+    color: var(--color-se);
+    border-color: rgba(52, 211, 153, 0.4);
+    background: rgba(52, 211, 153, 0.1);
+}
+
+.EvalBadge--Hibrido {
+    color: var(--color-accento);
+    border-color: rgba(167, 139, 250, 0.4);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.EvalDetalle__Desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--color-texto-suave);
+    margin-bottom: 10px;
+}
+
+.EvalDetalle__Subtitulo {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-texto-suave);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.EvalDetalle__Hint {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+/* Criterios en grid 2×2 */
+.EvalCriterios--Grid {
+    list-style: none;
+    margin: 0 0 10px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.EvalCriterio {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--color-borde);
+    background: var(--color-fondo);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.EvalCriterio:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.EvalCriterio.is-activo {
+    border-color: var(--color-primario);
+    background: rgba(99, 102, 241, 0.12);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
+}
+
+.EvalGrid[data-dimension-activa="cnn"] .EvalCriterio.is-activo {
+    border-color: var(--color-cnn);
+    background: rgba(56, 189, 248, 0.12);
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+}
+
+.EvalGrid[data-dimension-activa="se"] .EvalCriterio.is-activo {
+    border-color: var(--color-se);
+    background: rgba(52, 211, 153, 0.12);
+    box-shadow: 0 4px 16px rgba(52, 211, 153, 0.15);
+}
+
+.EvalCriterio__Nombre {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--color-texto-suave);
+    margin-bottom: 1px;
+}
+
+.EvalCriterio__Valor {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    line-height: 1.2;
+}
+
+.EvalCriterio__Detalle {
+    font-size: 0.65rem;
+    color: var(--color-texto-suave);
+    margin: 3px 0 0;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.EvalEjemplo {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px dashed var(--color-borde);
+    background: rgba(255, 255, 255, 0.02);
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+.EvalEjemplo__Icono {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.EvalEjemplo strong {
+    display: block;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accento);
+    margin-bottom: 3px;
+}
+
+.EvalEjemplo p {
+    margin: 0;
+    color: var(--color-texto);
+}
+
+/* Panel gráficos */
+.EvalLive {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--color-se);
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.EvalLive[hidden] {
+    display: none !important;
+}
+
+.EvalLive__Punto {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-se);
+    animation: EvalPulso 1.4s ease infinite;
+}
+
+@keyframes EvalPulso {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.EvalGraficoVista {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    animation: EvalVistaIn 0.4s ease;
+}
+
+.EvalGraficoVista.is-visible {
+    display: flex;
+}
+
+@keyframes EvalVistaIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* KPIs CNN */
+.EvalKpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.EvalKpi {
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+    background: var(--color-glass);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.EvalKpi.is-activo {
+    border-color: var(--color-cnn);
+    background: rgba(56, 189, 248, 0.12);
+    transform: scale(1.04);
+}
+
+.EvalKpi__Val {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-cnn);
+}
+
+.EvalKpi__Lbl {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-texto-suave);
+}
+
+/* Charts apilados */
+.EvalCharts--Apilado {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.EvalCharts__Item h4 {
+    font-size: 0.72rem;
+    color: var(--color-texto-suave);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.EvalChartWrap--Barras {
+    position: relative;
+    height: 110px;
+}
+
+.EvalChartWrap--Dona {
+    position: relative;
+    height: 100px;
+    max-width: 180px;
+    margin: 0 auto;
+}
+
+/* Barras SE dinámicas */
+.EvalBarras {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.EvalBarra {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3px 10px;
+    align-items: center;
+    opacity: 0;
+    animation: EvalBarraIn 0.5s ease forwards;
+}
+
+.EvalBarra:nth-child(1) { animation-delay: 0.05s; }
+.EvalBarra:nth-child(2) { animation-delay: 0.12s; }
+.EvalBarra:nth-child(3) { animation-delay: 0.19s; }
+.EvalBarra:nth-child(4) { animation-delay: 0.26s; }
+
+@keyframes EvalBarraIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.EvalBarra.is-activa .EvalBarra__Track {
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+}
+
+.EvalBarra__Label {
+    grid-column: 1;
+    font-size: 0.78rem;
+    color: var(--color-texto);
+}
+
+.EvalBarra__Track {
+    grid-column: 1;
+    height: 9px;
+    background: var(--color-glass);
+    border-radius: 999px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.EvalBarra__Fill {
+    height: 100%;
+    border-radius: 999px;
+    width: 0;
+    background: linear-gradient(90deg, var(--color-se), #6ee7b7);
+    transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.EvalBarra__Pct {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-se);
+}
+
+.EvalNota {
+    font-size: 0.72rem;
+    color: var(--color-texto-suave);
+    line-height: 1.45;
+    margin: 8px 0 0;
+}
+
+/* Pipeline mini híbrido */
+.EvalPipelineMini {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--color-glass);
+    border: 1px solid var(--color-borde);
+}
+
+.EvalPipelineMini__Nodo {
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 5px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    animation: EvalNodoPulso 2s ease infinite;
+}
+
+.EvalPipelineMini__Nodo--Cnn {
+    color: var(--color-cnn);
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.EvalPipelineMini__Nodo--Se {
+    color: var(--color-se);
+    background: rgba(52, 211, 153, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.EvalPipelineMini__Nodo--Puente {
+    color: var(--color-accento);
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.EvalPipelineMini__Nodo:nth-child(1) { animation-delay: 0s; }
+.EvalPipelineMini__Nodo:nth-child(3) { animation-delay: 0.3s; }
+.EvalPipelineMini__Nodo:nth-child(5) { animation-delay: 0.6s; }
+.EvalPipelineMini__Nodo:nth-child(7) { animation-delay: 0.9s; }
+.EvalPipelineMini__Nodo:nth-child(9) { animation-delay: 1.2s; }
+
+@keyframes EvalNodoPulso {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
+}
+
+.EvalPipelineMini__Flecha {
+    font-size: 0.7rem;
+    color: var(--color-texto-suave);
+    opacity: 0.5;
+}
+
+/* Stats híbrido */
+.EvalHibridoStats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.EvalHibridoStat {
+    text-align: center;
+    padding: 12px 8px;
+    border-radius: 12px;
+    border: 1px solid var(--color-borde);
+    background: var(--color-glass);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.EvalHibridoStat:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primario);
+}
+
+.EvalHibridoStat__Num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+.EvalHibridoStat__Label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-texto-suave);
+    margin-top: 3px;
+}
+
+/* Entrada al activar slide */
+.Slide--Evaluacion.is-active .EvalCard {
+    animation: EvalCardIn 0.45s ease backwards;
+}
+
+.Slide--Evaluacion.is-active .EvalCard:nth-child(1) { animation-delay: 0.05s; }
+.Slide--Evaluacion.is-active .EvalCard:nth-child(2) { animation-delay: 0.12s; }
+.Slide--Evaluacion.is-active .EvalCard:nth-child(3) { animation-delay: 0.19s; }
+
+@keyframes EvalCardIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    .EvalGrid,
+    .EvalCriterios--Grid { grid-template-columns: 1fr; }
+    .EvalKpis { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .EvalDimensiones { grid-template-columns: 1fr; }
+    .EvalHibridoStats { grid-template-columns: 1fr; }
+}
